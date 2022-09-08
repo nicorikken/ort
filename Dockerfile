@@ -34,6 +34,7 @@ ARG PYTHON_INSPECTOR_VERSION="0.6.5"
 FROM eclipse-temurin:11-jdk-jammy AS build
 
 COPY . /usr/local/src/ort
+COPY "$CRT_FILES" /tmp/certificates/
 
 WORKDIR /usr/local/src/ort
 
