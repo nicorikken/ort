@@ -60,3 +60,10 @@ buildCache {
         removeUnusedEntriesAfterDays = buildCacheRetentionDays.toInt()
     }
 }
+
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}

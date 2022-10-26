@@ -4,6 +4,7 @@ detektPlugin = "1.21.0"
 dokkaPlugin = "1.7.20"
 downloadPlugin = "5.3.0"
 graalPlugin = "0.12.0"
+graalVmNativeImagePlugin = "0.9.16"
 # @pin this version until https://github.com/ExpediaGroup/graphql-kotlin/issues/1526 is resolved.
 graphQlPlugin = "5.5.0"
 ideaExtPlugin = "1.1.6"
@@ -73,6 +74,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektPlugin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokkaPlugin" }
 download = { id = "de.undercouch.download", version.ref = "downloadPlugin" }
 graal = { id = "com.palantir.graal", version.ref = "graalPlugin" }
+graalVmNativeImage = { id = "org.graalvm.buildtools.native", version.ref = "graalVmNativeImagePlugin" }
 graphQl = { id = "com.expediagroup.graphql", version.ref = "graphQlPlugin" }
 ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExtPlugin" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }

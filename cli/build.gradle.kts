@@ -27,6 +27,7 @@ plugins {
 
     // Apply third-party plugins.
     alias(libs.plugins.graal)
+    alias(libs.plugins.graalVmNativeImage)
     alias(libs.plugins.shadow)
 }
 
@@ -61,6 +62,47 @@ graal {
 
     mainClass("org.ossreviewtoolkit.cli.OrtMainKt")
     outputName("ort")
+}
+
+project.extra.set("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+project.setProperty("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+
+
+
+graalvmNative {
+    binaries {
+        named("main") {
+            javaLauncher.set(javaToolchains.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(17))
+                vendor.set(JvmVendorSpec.matching("GraalVM Community"))
+            })
+        }
+    }
+
+    metadataRepository {
+        enabled.set(true)
+    }
+}
+project.extra.set("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+project.setProperty("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+extra.set("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+setProperty("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+
+logger.quiet("AAA" + providers.gradleProperty("org.gradle.java.installations.paths").get())
+//logger.quiet("AAA" + project.providers.gradleProperty("org.gradle.java.installations.paths").get().toString())
+
+tasks.withType<org.graalvm.buildtools.gradle.tasks.BuildNativeImageTask>().configureEach {
+    logger.quiet("BBB" + project.providers.gradleProperty("org.gradle.java.installations.paths").get().toString())
+    val extractGraalTooling = tasks.named<com.palantir.gradle.graal.ExtractGraalTask>("extractGraalTooling")
+    dependsOn(extractGraalTooling)
+    project.extra.set("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+    project.setProperty("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+    extra.set("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+    setProperty("org.gradle.java.installations.paths", "/home/sebastian/.gradle/caches/com.palantir.graal/22.3.0/17/graalvm-ce-java17-22.3.0")
+}
+
+tasks.named<com.palantir.gradle.graal.ExtractGraalTask>("extractGraalTooling") {
+    logger.quiet("XXX" + outputDirectory.get().toString())
 }
 
 tasks.withType<ShadowJar>().configureEach {
