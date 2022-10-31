@@ -36,6 +36,14 @@ class CopyrightStatementsProcessorTest : WordSpec({
 
             actualResult shouldBe expectedResult
         }
+
+        "return all original statements" {
+            val processed = CopyrightStatementsProcessor.process(statements)
+            val processedOriginalStatements = processed.unprocessedStatements +
+                    processed.processedStatements.values.flatten()
+
+            processedOriginalStatements shouldBe statements.toSet()
+        }
     }
 })
 
