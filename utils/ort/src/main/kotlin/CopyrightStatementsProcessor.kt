@@ -311,12 +311,12 @@ object CopyrightStatementsProcessor {
         val unprocessedStatements = sortedSetOf<String>()
         val processableStatements = mutableListOf<Parts>()
 
-        copyrightStatements.distinct().forEach {
-            val parts = determineParts(it)
+        copyrightStatements.distinct().forEach { statement ->
+            val parts = determineParts(statement)
             if (parts != null) {
                 processableStatements += parts
             } else {
-                unprocessedStatements += it
+                unprocessedStatements += statement
             }
         }
 
